@@ -1,0 +1,44 @@
+.container{
+    width: 35% !important;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px 50px 30px 50px;
+    color: rgb(230, 230, 230);
+    box-shadow: 0.5px 0.5px 15px rgba(21, 27, 31, 0.9);
+}
+
+.form-group{
+    margin-top: 30px;
+}
+
+input{
+    width: 100%;
+    color: rgb(235, 235, 235);
+    border: none;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    background-color: #1f252c;
+    padding: 10px 7px 10px 7px;
+    outline: none;
+}
+
+.circle-1{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    clip-path: circle(400px at right 700px);
+    background-color: #282f38;
+
+}
+.circle-2{
+    position: absolute;
+    top: -400px;
+    left: -600px;
+    height: 100%;
+    width: 100%;
+    clip-path: circle();
+    background-color: #282f38;
+
+}
+

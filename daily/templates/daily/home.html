@@ -1,0 +1,80 @@
+{% extends 'daily/layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'daily/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="divContainer mt-5 mx-auto">
+        <div class="main shadow-lg rounded py-3">
+            <h1 class="text-center text-white mb-4">Daily Tweets</h1>
+            
+            <div class="cards d-flex justify-content-evenly flex-wrap ">
+                
+                <div class="card text-white mb-3" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
+                      <a href="#" class="me-3 float-end bg-primary"><i class="far fa-eye text-white fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="card text-white mb-3" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
+                      <a href="#" class="me-3 float-end bg-primary"><i class="far fa-eye text-white fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="card text-white mb-3" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
+                      <a href="#" class="me-3 float-end bg-primary"><i class="far fa-eye text-white fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="card text-white mb-3" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
+                      <a href="#" class="me-3 float-end bg-primary"><i class="far fa-eye text-white fs-4"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <aside>
+            <div class="newDaily">
+                <a class="btn btn-primary btn-lg  w-75" href="#">+ New Daily</a>
+            </div>
+            <div class="retweets text-white shadow-lg rounded p-3">
+                <h4 class="text-center mt-3">Retweets</h4>
+                <hr class="mb-3">
+                <div class="card my-4">
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+                <div class="card my-4">
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+                <div class="card my-4">
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+                
+            </div>
+        </aside>
+    </div>
+{% endblock %}

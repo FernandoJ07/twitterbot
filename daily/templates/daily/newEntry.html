@@ -1,0 +1,40 @@
+{% extends 'daily/layout.html' %}
+
+{% block title %} New Entry {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="container w-50 shadow-sm p-3 mb-5 mt-3 bg-light  rounded">
+        <h1 class="text-center">Create New Entry</h1>
+        <hr>	
+        <form method="POST">
+            {% csrf_token %}
+            {{form | crispy}}
+            <input class="btn btn-success" type="submit" value="Send">
+        </form>
+    </div>
+
+
+
+    <script>
+        $(function () {
+            $("#id_date").datepicker();  
+        });
+
+        $("#id_time").timepicker({
+            minTime: '1:00am',
+            maxTime: '11:59pm',
+            interval: '1',
+            dropdown: false,
+        });
+
+        
+
+        
+
+
+    </script>
+
+{% endblock %}

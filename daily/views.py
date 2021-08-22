@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from .models import *
+from .forms import *
 # Create your views here.
 
 def credential(request):
@@ -9,6 +10,26 @@ def credential(request):
     
 def home(request):
     return render(request, 'daily/home.html')
+
+def newEntry(request):
+    if request.method == 'POST':
+        form = entryForm(request.POST)
+
+        if form.is_valid():
+            entry = form.save(commit=False)
+            entry.owner = request.user
+            entry.save()
+
+    else:
+        form = entryForm()
+    return render(request, 'daily/newEntry.html', {'form': form})
+
+
+def tweets(request):
+    tweets = Entry.objects.filter(owner = request.user)
+    return render(request, 'daily/tweets.html', {'tweets': tweets})
+    
+    
 
 def register(request):
     if request.method == 'POST':

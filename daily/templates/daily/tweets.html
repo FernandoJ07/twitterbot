@@ -1,0 +1,16 @@
+{% extends 'daily/layout.html' %}
+
+{% block title %} New Entry {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% for tweet in tweets %}
+
+        <p class="text-white">{{tweet.content}}</p>
+        <small class="text-white">{{tweet.time}}</small>
+
+    {% endfor %}
+
+{% endblock %}

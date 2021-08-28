@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+from django.http import JsonResponse
+import json
 from .models import *
 from .forms import *
 # Create your views here.
 
 def credential(request):
-    return render(request, 'daily/credentials/credential.html')
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        return render(request, 'daily/credentials/credential.html')
     
 def home(request):
     return render(request, 'daily/home.html')
@@ -19,10 +24,28 @@ def newEntry(request):
             entry = form.save(commit=False)
             entry.owner = request.user
             entry.save()
+            return redirect('home')
 
     else:
         form = entryForm()
     return render(request, 'daily/newEntry.html', {'form': form})
+
+def delEntry(request, entry_id):
+    tweet = Entry.objects.get(id = entry_id)
+    tweet.delete()
+    return redirect('tweets')
+
+def editEntry(request, entry_id):
+
+    tweet = Entry.objects.get(id= entry_id)
+    data = json.loads(request.body)
+    tweet.title = data['title']
+    tweet.content = data['content']
+    tweet.date = data['date']
+    tweet.save()
+    return JsonResponse({"content": tweet})
+
+
 
 
 def tweets(request):

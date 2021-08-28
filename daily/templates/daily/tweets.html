@@ -1,16 +1,73 @@
 {% extends 'daily/layout.html' %}
 
-{% block title %} New Entry {% endblock %}
+{% block title %} Tweets {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'daily/modalEdit.css' %}">
+    <script src="{% static 'daily/editTweet.js' %}"></script>
+{% endblock %}
+
 
 {% load crispy_forms_tags %}
 
 {% block content %}
 
+    <h1 class="text-white text-center mt-4 border-bottom border-white mx-5 mb-4 pb-3">Tweets</h1>
+
     {% for tweet in tweets %}
 
-        <p class="text-white">{{tweet.content}}</p>
-        <small class="text-white">{{tweet.time}}</small>
+        <div class="container text-white my-3 py-3" style="box-shadow:1px 1px 13px 0.5px rgba(0, 0, 0, 0.3);">
+            <div class="title">
+                <h3>{{tweet.title}}</h3>
+                <p class="text-muted">Fecha de envio: {{tweet.date}} - {{tweet.time}}</p>
+                <hr>
+            </div>
+            <div class="content">
+                <p>{{tweet.content}}</p>
+            </div>
+            <div class="buttons d-flex justify-content-end">
+                <a class="btn btn-danger mx-2" href="{% url 'delete' tweet.id %}">Delete</a>
+                <a type='button'  data-bs-toggle="modal" data-bs-target="#exampleModal-{{tweet.id}}" class="btn btn-warning mx-2" href="#">Edit</a>
+                <a href="#" class="btn btn-primary mx-2">Send</a>
+            </div>
+
+        </div>
+        
+        <!-- modal edit info tweet -->
+        <div class="modal fade mt-5" id="exampleModal-{{tweet.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit tweet</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEdit" method="POST">
+                        <input class="form-control" type="text" id="title-{{tweet.id}}" value="{{tweet.title}}"><br>
+                        <textarea name="content" id='content-{{tweet.id}}'  class="form-control" cols="30" rows="10">{{tweet.content}}</textarea>
+                        <input class="form-control mt-2" id='date-{{tweet.id}}' name="date" type="text" id="date-{{tweet.id}}" class="dateinput" value="{{tweet.date}}">
+                        
+                        <div class=" w-100 d-flex justify-content-end mt-2">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="save-{{tweet.id}}" onclick="editTweet('{{tweet.id}}')" data-bs-dismiss="modal"  type="button" class="btn btn-primary ms-3">Save changes</button>
+                        </div>
+                       
+                    </form>    
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- <script>
+            $(function () {
+                $("#date-{{tweet.id}}").datepicker();  
+            });
+        </script> -->
 
     {% endfor %}
+
+
 
 {% endblock %}

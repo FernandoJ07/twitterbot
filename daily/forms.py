@@ -6,7 +6,7 @@ from .models import *
 class entryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['title', 'content', 'date', 'time']
+        fields = ['title', 'content', 'date']
 
         widgets = {
             'date': forms.DateInput(format='%dd/%mm/%YYYY'),

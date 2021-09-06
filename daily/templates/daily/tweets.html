@@ -20,12 +20,12 @@
 
         <div class="container text-white my-3 py-3" style="box-shadow:1px 1px 13px 0.5px rgba(0, 0, 0, 0.3);">
             <div class="title">
-                <h3>{{tweet.title}}</h3>
-                <p class="text-muted">Fecha de envio: {{tweet.date}} - {{tweet.time}}</p>
+                <h3 id="title-{{tweet.id}}">{{tweet.title}}</h3>
+                <p id="date-{{tweet.id}}" class="text-muted">Fecha de envío: {{tweet.date}}</p>
                 <hr>
             </div>
             <div class="content">
-                <p>{{tweet.content}}</p>
+                <p id="content-{{tweet.id}}">{{tweet.content}}</p>
             </div>
             <div class="buttons d-flex justify-content-end">
                 <a class="btn btn-danger mx-2" href="{% url 'delete' tweet.id %}">Delete</a>
@@ -45,9 +45,9 @@
                 </div>
                 <div class="modal-body">
                     <form id="formEdit" method="POST">
-                        <input class="form-control" type="text" id="title-{{tweet.id}}" value="{{tweet.title}}"><br>
-                        <textarea name="content" id='content-{{tweet.id}}'  class="form-control" cols="30" rows="10">{{tweet.content}}</textarea>
-                        <input class="form-control mt-2" id='date-{{tweet.id}}' name="date" type="text" id="date-{{tweet.id}}" class="dateinput" value="{{tweet.date}}">
+                        <input class="form-control" type="text" id="titleForm-{{tweet.id}}" value="{{tweet.title}}"><br>
+                        <textarea name="content" id='contentForm-{{tweet.id}}'  class="form-control" cols="30" rows="10">{{tweet.content}}</textarea>
+                        <input class="form-control mt-2" id='dateForm-{{tweet.id}}' name="date" type="text" id="date-{{tweet.id}}" class="dateinput" value="{{tweet.date}}">
                         
                         <div class=" w-100 d-flex justify-content-end mt-2">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

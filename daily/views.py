@@ -43,7 +43,7 @@ def editEntry(request, entry_id):
     tweet.content = data['content']
     tweet.date = data['date']
     tweet.save()
-    return JsonResponse({"content": tweet})
+    return JsonResponse(data)
 
 
 

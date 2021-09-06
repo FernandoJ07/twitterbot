@@ -16,26 +16,21 @@ function getCookie(name) {
 
 function editTweet(id){
 
-    document.querySelector(`#save-${id}`).addEventListener('click', () => {
-        fetch(`edit/${id}`, {
-            method: 'POST',
-            body: JSON.stringify({
-                title: document.querySelector(`#title-${id}`).value,
-                content: document.querySelector(`#content-${id}`).value,
-                date: document.querySelector(`#date-${id}`).value
-            }),
-            headers: {'X-CSRFToken': getCookie('csrftoken'),} 
-        })
-        .then(response => response.json())
-        .then((tweet) => {
-    
-            document.querySelector(`#title-${id}`).innerHTML = tweet.title
-            document.querySelector(`#content-${id}`).innerHTML = tweet.content
-            document.querySelector(`#date-${id}`).innerHTML = tweet.date
-
-
-            
-        })
-
+    fetch(`edit/${id}`, {
+        method: 'POST',
+        body: JSON.stringify({
+            title: document.querySelector(`#titleForm-${id}`).value,
+            content: document.querySelector(`#contentForm-${id}`).value,
+            date: document.querySelector(`#dateForm-${id}`).value
+        }),
+        headers: {'X-CSRFToken': getCookie('csrftoken'),} 
     })
+    .then(response => response.json())
+    .then((tweet) => {
+        document.querySelector(`#title-${id}`).innerHTML = tweet.title
+        document.querySelector(`#content-${id}`).innerHTML = tweet.content
+        document.querySelector(`#date-${id}`).innerHTML = `Fecha de envío: ${tweet.date}`
+    })
+
+
 }

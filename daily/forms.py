@@ -9,5 +9,7 @@ class entryForm(forms.ModelForm):
         fields = ['title', 'content', 'date']
 
         widgets = {
+            'date': forms.CharField(widget=forms.TextInput(attrs={'autocomplete':'off'})),
             'date': forms.DateInput(format='%dd/%mm/%YYYY'),
+            
         }

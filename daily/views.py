@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from django.http import JsonResponse
+from datetime import datetime
+from django.core import serializers
 import json
 from .models import *
 from .forms import *
@@ -14,7 +16,12 @@ def credential(request):
         return render(request, 'daily/credentials/credential.html')
     
 def home(request):
-    return render(request, 'daily/home.html')
+    date = datetime.today().strftime('%m/%d/%Y')
+    tweets = Entry.objects.filter(owner = request.user, date = date)[:4]
+
+    return render(request, 'daily/home.html', {
+        'tweets': tweets
+    })
 
 def newEntry(request):
     if request.method == 'POST':

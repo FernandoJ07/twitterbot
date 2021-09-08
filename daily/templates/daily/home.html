@@ -2,6 +2,7 @@
 
 {% block title %} Home {% endblock %}
 
+{% load humanize %}
 {% load static %}
 
 {% block style %}
@@ -14,40 +15,16 @@
             <h1 class="text-center text-white mb-4">Daily Tweets</h1>
             
             <div class="cards d-flex justify-content-evenly flex-wrap ">
-                
+                {% for tweet in tweets %}
                 <div class="card text-white mb-3" style="width: 22rem;">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">{{tweet.title}}</h5>
+                      <p class="card-text">{{tweet.content | truncatewords:94}}</p>
                       <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
                       <a href="#" class="me-3 float-end bg-primary">editar</a>
                     </div>
                 </div>
-                <div class="card text-white mb-3" style="width: 22rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
-                      <a href="#" class="me-3 float-end bg-primary">editar</a>
-                    </div>
-                </div>
-                <div class="card text-white mb-3" style="width: 22rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
-                      <a href="#" class="me-3 float-end bg-primary">editar</a>
-                    </div>
-                </div>
-                <div class="card text-white mb-3" style="width: 22rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
-                      <a href="#" class="me-3 float-end bg-primary">editar</a>
-                    </div>
-                </div>
-                
+                {% endfor %}
             </div>
             
         </div>

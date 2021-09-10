@@ -4,10 +4,23 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import JsonResponse
 from datetime import datetime
 from django.core import serializers
+import tweepy
 import json
 from .models import *
 from .forms import *
 # Create your views here.
+
+
+#keys de la API
+
+apiKey = "QIhvFRboJtDHtT17F7DeHnl85"
+apiSecretKey =  "twH6KAJlINqoWNfkc8kjYBIyG3I7o5SALzICSjBOD2sngaYlXx"
+accesToken = "729986611677671424-tAYmafOvkW9sMHjfG4dc48bruq1dNm2"
+accesTokenSecret = "ab6LMT7Uvf6yUfRs05NHHMiUpfFJvA6LMsuff2DqHm0nN"
+
+auth = tweepy.OAuthHandler(apiKey, apiSecretKey)
+auth.set_access_token(accesToken, accesTokenSecret)
+api = tweepy.API(auth, wait_on_rate_limit = True, wait_on_rate_limit_notify = True)
 
 def credential(request):
     if request.user.is_authenticated:
@@ -17,7 +30,7 @@ def credential(request):
     
 def home(request):
     date = datetime.today().strftime('%m/%d/%Y')
-    tweets = Entry.objects.filter(owner = request.user, date = date)[:4]
+    tweets = Entry.objects.filter(owner = request.user, date = date)[:3]
 
     return render(request, 'daily/home.html', {
         'tweets': tweets
@@ -52,7 +65,13 @@ def editEntry(request, entry_id):
     tweet.save()
     return JsonResponse(data)
 
+def sendTweet(request, entry_id):
 
+    tweet = Entry.objects.get(id = entry_id)
+    tweetMessage = tweet.content
+    api.update_status(tweetMessage)
+
+    return redirect('home')
 
 
 def tweets(request):

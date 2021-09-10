@@ -9,6 +9,7 @@ urlpatterns = [
     path('newEntry', views.newEntry, name='newEntry'),
     path('delete/<int:entry_id>', views.delEntry, name = 'delete'),
     path('edit/<int:entry_id>', views.editEntry, name='edit'),
+    path('send/<int:entry_id>', views.sendTweet, name='send'),
     path('register', views.register, name='register'),
     path('logout', views.logout_view, name='logout'),
     path('login', views.login_view, name='login')

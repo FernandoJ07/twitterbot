@@ -5,7 +5,6 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'daily/modalEdit.css' %}">
     <script src="{% static 'daily/editTweet.js' %}"></script>
 {% endblock %}
 
@@ -30,7 +29,7 @@
             <div class="buttons d-flex justify-content-end">
                 <a class="btn btn-danger mx-2" href="{% url 'delete' tweet.id %}">Delete</a>
                 <a type='button'  data-bs-toggle="modal" data-bs-target="#exampleModal-{{tweet.id}}" class="btn btn-warning mx-2" href="#">Edit</a>
-                <a href="#" class="btn btn-primary mx-2">Send</a>
+                <a href="{% url 'send' tweet.id %}" class="btn btn-primary mx-2">Send</a>
             </div>
 
         </div>
@@ -58,13 +57,7 @@
                 </div>
               </div>
             </div>
-          </div>
-
-        <!-- <script>
-            $(function () {
-                $("#date-{{tweet.id}}").datepicker();  
-            });
-        </script> -->
+        </div>
 
     {% endfor %}
 

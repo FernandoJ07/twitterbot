@@ -7,6 +7,7 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'daily/home.css' %}">
+    <script src="{% static 'daily/editTweet.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,17 +15,50 @@
         <div class="main shadow-lg rounded py-3">
             <h1 class="text-center text-white mb-4">Daily Tweets</h1>
             
-            <div class="cards d-flex justify-content-evenly flex-wrap ">
-                {% for tweet in tweets %}
-                <div class="card text-white mb-3" style="width: 22rem;">
-                    <div class="card-body">
-                      <h5 class="card-title pb-2">{{tweet.title}}</h5>
-                      <p class="card-text">{{tweet.content | truncatechars:94}}</p>
-                      <a href="#" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
-                      <a href="#" class="me-3 float-end bg-primary">editar</a>
-                    </div>
-                </div>
-                {% endfor %}
+            <div class="cards p-3 ">
+                {% if not tweets %}
+
+                <h1 class="text-white w-75 m-auto mt-5 p-4 text-center">You don't seem to have a <span class="fw-bold" style="color: #1DA6EB;">tweet</span> to send today ;)</h1>
+
+                {% else %}
+                    {% for tweet in tweets %}
+                        <div class="card text-white mb-3">
+                            <div class="card-body">
+                                <p class="fw-bold mb-0" id='title-{{tweet.id}}'>{{tweet.title}}</p>
+                                <hr class="m-1 mb-2">
+                                <p class="card-text d-inline" id="content-{{tweet.id}}">{{tweet.content | truncatechars:65}}</p>
+                                <a href="{% url 'send' tweet.id %}" class="float-end bg-success"><i class="fab fa-telegram-plane text-white fs-4"></i></a>
+                                <a type='button'  data-bs-toggle="modal" data-bs-target="#exampleModal-{{tweet.id}}" class="me-3 float-end bg-primary"><i class="fas fa-pencil-alt text-white fs-5"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- modal edit info tweet -->
+                        <div class="modal fade mt-5" id="exampleModal-{{tweet.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit tweet</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="formEdit" method="POST">
+                                        <input class="form-control" type="text" id="titleForm-{{tweet.id}}" value="{{tweet.title}}"><br>
+                                        <textarea name="content" id='contentForm-{{tweet.id}}'  class="form-control" cols="30" rows="10">{{tweet.content}}</textarea>
+                                        <input class="form-control mt-2" id='dateForm-{{tweet.id}}' name="date" type="text" id="date-{{tweet.id}}" class="dateinput" value="{{tweet.date}}">
+                                        
+                                        <div class=" w-100 d-flex justify-content-end mt-2">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button id="save-{{tweet.id}}" onclick="editTweet('{{tweet.id}}')" data-bs-dismiss="modal"  type="button" class="btn btn-primary ms-3">Save changes</button>
+                                        </div>
+                                    
+                                    </form>    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
             </div>
             
         </div>

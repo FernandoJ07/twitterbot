@@ -32,8 +32,12 @@ def home(request):
     date = datetime.today().strftime('%m/%d/%Y')
     tweets = Entry.objects.filter(owner = request.user, date = date)[:3]
 
+    mentions = api.mentions_timeline(tweet_mode = "extended")[:3]
+    
+
     return render(request, 'daily/home.html', {
-        'tweets': tweets
+        'tweets': tweets,
+        'mentions': reversed(mentions)
     })
 
 def newEntry(request):
@@ -77,8 +81,7 @@ def sendTweet(request, entry_id):
 def tweets(request):
     tweets = Entry.objects.filter(owner = request.user)
     return render(request, 'daily/tweets.html', {'tweets': tweets})
-    
-    
+
 
 def register(request):
     if request.method == 'POST':

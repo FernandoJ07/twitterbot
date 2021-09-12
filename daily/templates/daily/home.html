@@ -13,12 +13,12 @@
 {% block content %}
     <div class="divContainer mt-3 mx-auto">
         <div class="main shadow-lg rounded py-3">
-            <h1 class="text-center text-white mb-4">Daily Tweets</h1>
+            <h1 class="text-center text-white mb-3">Daily Tweets</h1>
             
             <div class="cards p-3 ">
                 {% if not tweets %}
 
-                <h1 class="text-white w-75 m-auto mt-5 p-4 text-center">You don't seem to have a <span class="fw-bold" style="color: #1DA6EB;">tweet</span> to send today ;)</h1>
+                <h1 class="text-white w-75 m-auto text-center">You don't seem to have a <span class="fw-bold" style="color: #1DA6EB;">tweet</span> to send today ;)</h1>
 
                 {% else %}
                     {% for tweet in tweets %}
@@ -66,24 +66,16 @@
             <div class="newDaily">
                 <a class="btn btn-primary btn-lg  w-75" href="{% url 'newEntry' %}">+ New Daily</a>
             </div>
-            <div class="retweets text-white shadow-lg rounded p-3">
-                <h4 class="text-center mt-3">Retweets</h4>
+            <div class="mentions text-white shadow-lg rounded p-3">
+                <h4 class="text-center mt-3">Mentions</h4>
                 <hr class="mb-3">
-                <div class="card my-4">
-                    <div class="card-body">
-                        This is some text within a card body.
-                    </div>
+                {% for mention in mentions %}
+                <div class="card my-3">
+                    <a href="https://twitter.com/{{mention.user.screen_name}}/status/{{mention.id}}" target="_blank" class="card-body text-decoration-none text-white p-2"> 
+                        {{mention.user.screen_name}} mentioned you.
+                    </a>
                 </div>
-                <div class="card my-4">
-                    <div class="card-body">
-                        This is some text within a card body.
-                    </div>
-                </div>
-                <div class="card my-4">
-                    <div class="card-body">
-                        This is some text within a card body.
-                    </div>
-                </div>
+                {% endfor %}
                 
             </div>
         </aside>

@@ -75,6 +75,8 @@ def sendTweet(request, entry_id):
     tweetMessage = tweet.content
     api.update_status(tweetMessage)
 
+    tweet.delete()
+
     return redirect('home')
 
 

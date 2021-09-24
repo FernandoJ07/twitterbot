@@ -4,7 +4,7 @@ This project is a twitter bot built on the Tweepy library that uses Python and d
 
 It should be noted that for its use, you must have a tweteer application to use the access codes that tweeter provides us.
 
-##Features
+## Features
 
 1. Authentication system:
 	- User register.
@@ -27,7 +27,7 @@ It should be noted that for its use, you must have a tweteer application to use 
 
 3. Mentions system: The mentions system is responsible for collecting the last 3 tweets that have been mentioned to us, only the name of the user who mentioned us will be shown as relevant information, but clicking on the record will take us to another tab with the complete information.
 
-##Usage
+## Usage
 
 First we clone the repository
 
@@ -45,9 +45,9 @@ and then:
 
 if you have trouble doing the migrations, try **`python manage.py makemigrations daily`** subsequently **`python manage.py migrate`**
 
-Finally, run ** `python manage.py runserver` ** to start the web application.
+Finally, run **`python manage.py runserver`** to start the web application.
 
-#Documentation
+# Documentation
 
 The "TweeterDaily" project has the application called "daily" previously configured.
 
@@ -59,7 +59,7 @@ Finally, the "views" file maintains a large part of the information about the ma
 
 ![](https://i.imgur.com/4634NmJ.png)
 
-###In the page "home" we will obtain:
+### In the page "home" we will obtain:
 
 - Tweets in which the date provided coincides with the date the application is being used will be shown in "Daily Tweets" and will have two actions: Send or Edit, if there is no match it shows a nice message.
 
@@ -69,7 +69,7 @@ Finally, the "views" file maintains a large part of the information about the ma
 
 ![](https://i.imgur.com/88fR2YX.png)
 
-##To end
+## To end
 
 In the navigation area, the "Tweets" section will show us all the tweets that we have registered with 3 possible options: Send, Edit or Delete
 

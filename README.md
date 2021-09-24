@@ -4,7 +4,7 @@ This project is a twitter bot built on the Tweepy library that uses Python and d
 
 It should be noted that for its use, you must have a tweteer application to use the access codes that tweeter provides us.
 
-##Features
+## Features
 
 1. Authentication system:
 	- User register.

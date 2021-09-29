@@ -55,13 +55,13 @@ In the file "models" are the two models with which the application works "User" 
 
 admin has registered the models to be treated from the Django administrator and the forms file converts and adds characteristics of the Entry model in a form through the Django classes.
 
-Finally, the "views" file maintains a large part of the information about the management of the page, it maintains most of the logic of the app and there are the access keys to access the tweeter api, so there will be clearly the variables to which we have to assign them.
+Finally, the "views" file maintains a large part of the information about the management of the page, it maintains most of the logic of the app and there are the access keys to access the tweeter api, so there will be clearly the variables to which we have to assign them. You must request the access codes from the twitter page and place them in the corresponding variables, (if you do not do this step, the application will not work).
 
 ![](https://i.imgur.com/4634NmJ.png)
 
 ### In the page "home" we will obtain:
 
-- Tweets in which the date provided coincides with the date the application is being used will be shown in "Daily Tweets" and will have two actions: Send or Edit, if there is no match it shows a nice message.
+- Tweets in which the date provided coincides with the date the application is being used will be shown in "Daily Tweets" and will have two actions: Send or Edit, if there is no match it shows a nice message. When sending a tweet the page will reload and it will be removed from the records
 
 - It will also be in the "New daily" button which directs us to a form to create a new tweet.
 
